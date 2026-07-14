@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm test
+      - name: CLI smoke test (valid fixtures pass)
+        run: |
+          node dist/cli.js lint fixtures/commit-helper fixtures/pdf-extractor
+          node dist/cli.js tokens fixtures/pdf-extractor
+          node dist/cli.js rules --json > /dev/null
+      - name: CLI smoke test (broken fixtures fail)
+        run: |
+          if node dist/cli.js lint fixtures/broken-links; then
+            echo "expected a non-zero exit code" && exit 1
+          fi
