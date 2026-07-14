@@ -1,0 +1,68 @@
+{
+  "name": "skillcheck",
+  "version": "0.1.0",
+  "description": "Lint, validate, and measure the token cost of Agent Skills (SKILL.md). Fully local, no LLM or API required.",
+  "keywords": [
+    "agent-skills",
+    "skill",
+    "SKILL.md",
+    "lint",
+    "linter",
+    "validation",
+    "tokens",
+    "claude",
+    "llm",
+    "cli"
+  ],
+  "homepage": "https://github.com/kero168/skillcheck#readme",
+  "bugs": {
+    "url": "https://github.com/kero168/skillcheck/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kero168/skillcheck.git"
+  },
+  "license": "MIT",
+  "author": "kero168",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "skillcheck": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "README.ja.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build && npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

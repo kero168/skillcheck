@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "skillcheck"
+type: software
+authors:
+  - name: "kero168"
+repository-code: "https://github.com/kero168/skillcheck"
+url: "https://github.com/kero168/skillcheck"
+license: MIT
+version: 0.1.0
+date-released: "2026-07-14"
+abstract: >-
+  A local-only TypeScript CLI that lints Agent Skills (SKILL.md), validates
+  their frontmatter and file references, and estimates their token cost per
+  loading tier without calling any LLM or network service.
+keywords:
+  - agent-skills
+  - lint
+  - tokens
+  - cli
